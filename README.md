@@ -92,5 +92,5 @@ Proprietary License. All rights reserved. Code is provided for personal use and 
 ---
 
 <div align="center">
-  <p>Built with ⚡ by <a href="https://github.com/theaashay">@theaashay</a></p>
+ 
 </div>
