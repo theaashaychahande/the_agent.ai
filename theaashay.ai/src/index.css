@@ -1,0 +1,117 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-electric-blue: #00D4FF;
+  --color-deep-space: #050505;
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-scan: scan 3s linear infinite;
+  --animate-glitch: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-deep-space text-white font-sans antialiased selection:bg-electric-blue/30 selection:text-electric-blue overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .animate-glitch {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  }
+
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3), 0 0 30px rgba(0, 212, 255, 0.1);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .tech-border {
+    @apply border border-electric-blue/20 relative;
+  }
+
+  .tech-border::before {
+    content: '';
+    @apply absolute -top-[1px] -left-[1px] w-2 h-2 border-t-2 border-l-2 border-electric-blue;
+  }
+
+  .tech-border::after {
+    content: '';
+    @apply absolute -bottom-[1px] -right-[1px] w-2 h-2 border-b-2 border-r-2 border-electric-blue;
+  }
+
+  .scanline {
+    @apply absolute inset-0 pointer-events-none overflow-hidden;
+  }
+
+  .scanline::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-transparent via-electric-blue/10 to-transparent h-20 w-full animate-scan;
+  }
+
+  .data-text {
+    @apply font-mono text-[10px] uppercase tracking-widest text-electric-blue/40;
+  }
+}
